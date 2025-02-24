@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "1a1de61c-6fa8-4fd7-aa5b-e876fdcb6b46",
+		"name": "Spring Cloud API",
+		"description": "Aprendendo usar Spring Cloud na prática, documentação dos endpoints dos microserviços",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39093123"
+	},
+	"item": [
+		{
+			"name": "ClienteAPI",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"LeBron James\",\r\n    \"cpf\": \"07788613096\",\r\n    \"idade\": \"40\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:55413/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55413",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:55413/clientes?cpf=07788613096",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "55413",
+							"path": [
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "07788613096"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
