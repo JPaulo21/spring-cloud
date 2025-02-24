@@ -1,18 +1,21 @@
 package io.github.springcloud.msclientes.web.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.springcloud.msclientes.domain.Cliente;
+import io.github.springcloud.msclientes.domain.ClienteService;
+import io.github.springcloud.msclientes.web.dto.request.ClienteRequest;
+import io.github.springcloud.msclientes.web.dto.response.ClienteResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import java.net.URI;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/clientes")
 public class ClienteController {
 
-
+    private final ClienteService clienteService;
 
     @GetMapping
     public String status(){
@@ -20,7 +23,20 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> create(){
+    public ResponseEntity<Void> create(@RequestBody ClienteRequest clienteRequest){
+        Cliente cliente = clienteService.save(clienteRequest.toEntity());
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .query("cpf={cpf}")
+                .buildAndExpand(cliente.getCpf())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
 
+    @GetMapping(params = "cpf")
+    public ResponseEntity<ClienteResponse> getClienteByCpf(@RequestParam("cpf") String cpf){
+        var cliente = clienteService.getByCpf(cpf);
+        return cliente.map(clienteModel -> ResponseEntity.ok(clienteModel.toDto()))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
