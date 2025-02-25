@@ -64,6 +64,19 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Gateway API",
+			"item": [
+				{
+					"name": "CLIENTE - status",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

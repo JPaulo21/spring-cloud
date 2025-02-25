@@ -5,11 +5,13 @@ import io.github.springcloud.msclientes.domain.ClienteService;
 import io.github.springcloud.msclientes.web.dto.request.ClienteRequest;
 import io.github.springcloud.msclientes.web.dto.response.ClienteResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/clientes")
@@ -19,6 +21,7 @@ public class ClienteController {
 
     @GetMapping
     public String status(){
+        log.info("Obtendo status do microservice de clientes");
         return "ok";
     }
 
