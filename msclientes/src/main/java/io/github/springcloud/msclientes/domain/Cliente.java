@@ -2,13 +2,11 @@ package io.github.springcloud.msclientes.domain;
 
 import io.github.springcloud.msclientes.web.dto.response.ClienteResponse;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "")
+@Table(name = "Cliente")
 @NoArgsConstructor
 @Data
 public class Cliente {
