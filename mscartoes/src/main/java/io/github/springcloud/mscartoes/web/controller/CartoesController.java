@@ -6,10 +6,7 @@ import io.github.springcloud.mscartoes.web.dto.request.CartaoRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cartoes")
@@ -23,6 +20,7 @@ public class CartoesController {
         return "ok";
     }
 
+    @PostMapping
     public ResponseEntity<Void> cadastra(@RequestBody CartaoRequest cartaoRequest){
         Cartao cartao = cartaoService.save(cartaoRequest.toEntity());
         return ResponseEntity.status(HttpStatus.CREATED).build();
